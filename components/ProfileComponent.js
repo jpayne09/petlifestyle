@@ -11,7 +11,10 @@ const mapStateToProps = state => {
       profile: state.profile
     }
   }
+
+
 export const ProfileHeader = () => {
+
     return (
         <View style={[styles.container, {
             // Try setting `flexDirection` to `"row"`.
@@ -56,6 +59,7 @@ class Profile extends React.Component {
     }
     render(){
         console.log("props",this.props.profile.profile);
+        
     return(
         <View style={styles.background}>
         <ProfileHeader />
@@ -68,18 +72,19 @@ class Profile extends React.Component {
             <View style={{flexDirection:'row',alignSelf:'center'}}>
                     <Card containerStyle={{borderRadius:20, width:80,height:75,alignItems:'center',margin:5}}>
                         <Text>Age</Text>
-                        <Text style={{backgroundColor:'lightgrey'}}>{this.props.profile.profile.age}</Text>
+                        <Text style={styles.text}>{this.props.profile.profile.age}</Text>
                     </Card>
                     <Card containerStyle={{borderRadius:20, width:80,height:75,alignItems:'center',margin:5}}>
                         <Text>Weight</Text>
-                        <Text></Text>
+                        <Text style={styles.text}>{this.props.profile.profile.weight}</Text>
                     </Card>
                     <Card containerStyle={{borderRadius:20, width:80,height:75,alignItems:'center',margin:5}}>
                         <Text>Color</Text>
-                        <Text></Text>
+                        <Text style={styles.text}>{this.props.profile.profile.petColor}</Text>
                     </Card>
-                    <Card containerStyle={{borderRadius:20, width:80,height:75,alignItems:'center',margin:5}}>
-                        <Text>Medical Card</Text>
+                    <Card containerStyle={{borderRadius:20, width:100,height:75,alignItems:'center',margin:5}}>
+                        <Text style={{marginLeft:-17}}>Medical Card</Text>
+                        <Text style={styles.text}>{this.props.profile.profile.medicalCardId}</Text>
                     </Card>
             </View>
 
@@ -133,6 +138,9 @@ const styles = StyleSheet.create({
     },
     cardRow: {
         flexDirection:'row'
+    },
+    text: {
+        backgroundColor:'lightgrey'
     }
 })
 export default connect(mapStateToProps)(Profile);

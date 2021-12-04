@@ -5,11 +5,14 @@ export const addProfile = profile => ({
     payload: profile
 });
 
-export const postProfile = (profileId, age) => dispatch => {
+export const postProfile = (profileId, age,weight,medicalCardId,petColor) => dispatch => {
     console.log("postprofile is here");
     const newProfile ={
         profileId: profileId,
         age: age,
+        weight: weight,
+        medicalCardId: medicalCardId,
+        petColor: petColor,
     };
 
     setTimeout(() => {

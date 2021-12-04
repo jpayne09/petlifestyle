@@ -2,15 +2,44 @@ import * as React from 'react';
 import { Text, View , StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import HomeScreen from './HomeScreenComponent';
 import Profile from './ProfileComponent';
 import Entry from './EntryComponent';
-const Tab = createMaterialBottomTabNavigator();
+
+
+const Stack = createStackNavigator();
+
 
 export default function Main() {
   return (
-  <NavigationContainer>
+    <NavigationContainer>
+    <Stack.Navigator mode="card" headerMode="none">
+      <Stack.Screen
+        name="Entry"
+        component={Entry}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen 
+      name="Main" 
+      component={AppStack}
+      options={{
+        gestureEnabled: false,
+      }}
+      />
+    </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+const Tab = createMaterialBottomTabNavigator();
+
+
+function AppStack() {
+  return (
         <Tab.Navigator
           activeColor = "white"
           barStyle={{backgroundColor: 'tomato'}}
@@ -34,10 +63,7 @@ export default function Main() {
           })}
         >
           <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name= "Entry" component={Entry} />
           <Tab.Screen name="Profile" component={Profile} />
         </Tab.Navigator>
-      </NavigationContainer>
-
   );
 }
